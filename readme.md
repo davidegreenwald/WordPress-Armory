@@ -14,7 +14,7 @@ Some of the things this does:
 * Prevent directory browsing
 * Set a database prefix that isn't `wp_`
 * Block access to xmlrpc.php to prevent login attempts
-* Block web access to config
+* Block web access to config, .htaccess, and other sensitive files
 * Prevent `.php` execution in the uploads and cache folders
 * Prevent plugin and theme editing from the WordPress dashboard
 * Set good file and directory permissions
@@ -29,7 +29,7 @@ This boilerplate is not hack-proof! Use it with good security practices:
 * Limit login attempts
 * Allow WordPress core background updates and update WordPress regularly
 * Use trustworthy plugins and themes and update them regularly
-* Consider a WAF (Web Application Firewall)
+* Use a WAF (Web Application Firewall)
 * Regular site scanning and monitoring
 
 ## Set-Up
@@ -40,7 +40,7 @@ This boilerplate is not hack-proof! Use it with good security practices:
 * Install WordPress to add a site user. Don't use "admin."
 * If your host and plugin usage allows, set `.htaccess` and config files' permissions to 400, 440, or 640.
 
-Your login page will be at yourwebsite.com/core/wp-login.php. If you want, you can move this with a plugin, or change `/core` to something else, like `/wp`.
+Your login page will be at yourwebsite.com/core/wp-login.php or /wp-admin. If you want, you can move this with a plugin, or change `/core` to something else, like `/wp`.
 
 ## Recommended Security Tools
 
