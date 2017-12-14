@@ -1,0 +1,101 @@
+# ==============================================================================
+# Apache 2.4 .htaccess Server Configuration for WordPress Armory
+#
+# Expand your .htaccess with
+# @link https://github.com/davidegreenwald/.htaccess-for-WordPress
+#
+# And also:
+# HTML5 Boilerplate
+# https://github.com/h5bp/html5-boilerplate/blob/master/dist/.htaccess
+#
+# Apache documentation
+# https://httpd.apache.org/docs/current/howto/htaccess.html
+#
+# For maximum security, set .htaccess permissions to 400 or 440
+#
+# However, certain cache or redirect plugins will write to .htaccess and
+# need permissions such as 644 or 664. These are ONE-TIME changes and .htaccess
+# doesn't need the permissions after they've been made. Set up your plugins and
+# set the .htaccess file permissions back to the 400s.
+#
+# ==============================================================================
+
+# ==============================================================================
+# Table of Contents
+# `mod_rewrite`
+# Security
+
+# ==============================================================================
+
+## URL rewrites
+# Place these above the WordPress rewrites for best results
+# Here is a simple www redirect, add HTTPS, etc.
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+# RewriteCond %{HTTP_HOST} ^example.com [NC]
+# RewriteRule ^(.*)$ http://www.example.com/$1 [R=302,L]
+</IfModule>
+
+## Standard WordPress permalink rewrite for `.php` pages
+# This will cause `example.com/index.php` to display as `example.com`
+# Don't touch this - WordPress will overwrite any additions
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+# END WordPress
+
+# ==============================================================================
+## Security
+
+# This code is compatible with Apache 2.4
+# See the Apache docs for access control for 2.2
+# Note: <files> directives apply to all directories, so we don't need to
+# point to the readme file in /core and so on.
+# @link https://httpd.apache.org/docs/current/howto/auth.html
+# @link https://httpd.apache.org/docs/2.4/sections.html
+
+# Prevent directory access (i.e. example.com/wp-content/uploads/)
+# The `options` directive does not use a module and requires no if statement
+# @link https://httpd.apache.org/docs/2.4/mod/core.html#options
+
+Options All -Indexes
+
+# Disable `xmlrpc.php` to limit hacker login attempts
+# `xmlprc.php` is used for Jetpack, to blog by email, and pingbacks
+# If you're not doing any of this, disable it, it is a security hazard
+
+<Files xmlrpc.php>
+Require all denied
+</Files>
+
+# Block access to .htaccess
+<files ~ "^.*\.([Hh][Tt][Aa])">
+Require all denied
+</files>
+
+# Protect `wp-config.php` from web access
+<Files wp-config.php>
+Require all denied
+</Files>
+
+# Protect credential files
+<Files config-local.php>
+Require all denied
+</Files>
+
+<Files config-prod.php>
+Require all denied
+</Files>
+
+# Block the readme.html file packaged with WordPress
+<Files readme.html>
+Require all denied
+</Files>

@@ -1,0 +1,4 @@
+# Prevent remote .php execution from an arbitrary uploads exploit
+<Files *.php>
+Require all denied
+</Files>
