@@ -55,8 +55,8 @@ define('DB_COLLATE', ''); // let the database pick the collation
  * The default of this project is to move it, so leave this alone.
  */
 
-define( 'WP_SITEURL', $dgdev_protocol . $dgdev_domain . $dgdev_prod_tld );
-define( 'WP_HOME', $dgdev_protocol . $dgdev_domain . $dgdev_prod_tld . $dgdev_core ); // 1.
+define( 'WP_SITEURL', $dgdev_protocol . $dgdev_domain . $dgdev_prod_tld . $dgdev_core );
+define( 'WP_HOME', $dgdev_protocol . $dgdev_domain . $dgdev_prod_tld ); // 1.
 
  /**
   * Change the wp-content folder name and location
