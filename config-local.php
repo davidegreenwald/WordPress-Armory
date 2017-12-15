@@ -63,8 +63,8 @@ define('DB_COLLATE', ''); // let the database pick the collation
  *
  */
 
-define( 'WP_SITEURL', $dgdev_protocol . $dgdev_domain . $dgdev_local_tld );
-define( 'WP_HOME', $dgdev_protocol . $dgdev_domain . $dgdev_local_tld . $dgdev_core );
+define( 'WP_SITEURL', $dgdev_protocol . $dgdev_domain . $dgdev_local_tld . $dgdev_core );
+define( 'WP_HOME', $dgdev_protocol . $dgdev_domain . $dgdev_local_tld );
 
 /**
  * Change the wp-content folder name and location.
