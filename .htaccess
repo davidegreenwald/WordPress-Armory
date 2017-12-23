@@ -31,11 +31,11 @@
 # Place these above the WordPress rewrites for best results
 # Here is a simple www redirect, add HTTPS, etc.
 
-<IfModule mod_rewrite.c>
-RewriteEngine On
+# <IfModule mod_rewrite.c>
+# RewriteEngine On
 # RewriteCond %{HTTP_HOST} ^example.com [NC]
 # RewriteRule ^(.*)$ http://www.example.com/$1 [R=302,L]
-</IfModule>
+# </IfModule>
 
 ## Standard WordPress permalink rewrite for `.php` pages
 # This will cause `example.com/index.php` to display as `example.com`
@@ -62,6 +62,14 @@ RewriteRule . /index.php [L]
 # @link https://httpd.apache.org/docs/current/howto/auth.html
 # @link https://httpd.apache.org/docs/2.4/sections.html
 
+# Block user enumeration
+# https://perishablepress.com/stop-user-enumeration-wordpress/
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{QUERY_STRING} ^author=([0-9]*)
+RewriteRule .* /? [L,R=302]
+</IfModule>
+
 # Prevent directory access (i.e. example.com/wp-content/uploads/)
 # The `options` directive does not use a module and requires no if statement
 # @link https://httpd.apache.org/docs/2.4/mod/core.html#options
@@ -77,7 +85,7 @@ Require all denied
 </Files>
 
 # Block access to .htaccess
-<files ~ "^.*\.([Hh][Tt][Aa])">
+<Files ~ "^.*\.([Hh][Tt][Aa])">
 Require all denied
 </files>
 
