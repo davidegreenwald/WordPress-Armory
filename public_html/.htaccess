@@ -94,15 +94,6 @@ Require all denied
 Require all denied
 </Files>
 
-# Protect credential files
-<Files config-local.php>
-Require all denied
-</Files>
-
-<Files config-prod.php>
-Require all denied
-</Files>
-
 # Block the readme.html file packaged with WordPress
 <Files readme.html>
 Require all denied
