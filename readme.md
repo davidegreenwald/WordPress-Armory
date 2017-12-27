@@ -7,6 +7,8 @@ This project borrows from Mark Jaquith's WordPress Skeleton and techniques such 
 
 WordPress Armory splits local and production credentials into individual, separate config files, allowing `wp-config.php` to be version-controlled and safely deployed between sites. The credential files have been moved above the `public_html` website directory into the `config` folder, adding a layer of security and simplifying Git, deployment, and back-ups. Make sure `config-local.php` stays on your local machine and you're all set.
 
+The security benefits of moving the config file are hotly debated (though officially recommended by WordPress!) and you can read more about that on [Stack Overflow](https://wordpress.stackexchange.com/questions/58391/is-moving-wp-config-outside-the-web-root-really-beneficial). That said, the workflow benefits are obvious.
+
 Using this system for local development requires virtual hosts. You'll run into file path and root directory issues, if, say, you're running multiple sites in your /localhost folder with the free version of MAMP. Here's a [tutorial](https://www.rawkblog.com/2017/12/improve-mamp-for-wordpress-local-dev-with-3-upgrades/) on setting up virtual hosts with Apache and MAMP on macOS.
 
 Thanks to Reddit's [ssnepenthe](https://www.reddit.com/user/ssnepenthe) for the directory structure advice.
